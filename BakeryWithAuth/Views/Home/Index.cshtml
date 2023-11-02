@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    Layout = "_Layout";
+}
+
+@using BakeryWithAuth.Models;
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h2>Welcome to Pierre's Bakery, @User.Identity.Name!</h2>
+}
+else
+{
+    <h2>Welcome Pierre's Bakery!</h2>
+}
+
+<hr>
+
+<h4>Treats</h4>
+@if (Model["treats"] == null)
+{
+    <p>No treats have been added yet!</p>
+}
+<ul>
+    @foreach (Treat treat in Model["treats"])
+    {
+        <li>@Html.ActionLink(@treat.Name, "Details", "Treats", new { id = @treat.TreatId })</li>
+    }
+</ul>
+
+<hr>
+
+<h4>Flavors</h4>
+@if (Model["flavors"] == null)
+{
+    <p>No flavors have been added yet!</p>
+}
+
+    <ul>
+        @foreach (Treat treat in Model["treats"])
+        {
+            <li>@Html.ActionLink(@treat.Name, "Details", "Treats", new { id = @treat.TreatId })</li>
+        }
+    </ul>
+<hr>
+
+
+    
+
+<hr>
+
+<p>@Html.ActionLink("Manage Treats", "Index", "Treats")</p>
+<p>@Html.ActionLink("Manage Flavors", "Index", "Flavors")</p>
+<p>@Html.ActionLink("Create or manage an account", "Index", "Account")</p>
