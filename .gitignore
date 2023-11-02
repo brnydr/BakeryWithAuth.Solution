@@ -1,3 +1,6 @@
 obj 
 bin
 appsettings.json
+lib
+favicon.ico
+site.js
