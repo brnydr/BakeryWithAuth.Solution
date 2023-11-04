@@ -129,15 +129,16 @@ namespace BakeryWithAuth.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)");
+
                     b.HasKey("TreatId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Treats");
                 });
@@ -287,6 +288,15 @@ namespace BakeryWithAuth.Migrations
                     b.Navigation("Flavor");
 
                     b.Navigation("Treat");
+                });
+
+            modelBuilder.Entity("BakeryWithAuth.Models.Treat", b =>
+                {
+                    b.HasOne("BakeryWithAuth.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
