@@ -51,7 +51,9 @@ else
     
 
 <hr>
-
-<p>@Html.ActionLink("Manage Treats", "Index", "Treats")</p>
-<p>@Html.ActionLink("Manage Flavors", "Index", "Flavors")</p>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>@Html.ActionLink("Manage Treats", "Index", "Treats")</p>
+    <p>@Html.ActionLink("Manage Flavors", "Index", "Flavors")</p>
+}
 <p>@Html.ActionLink("Create or manage an account", "Index", "Account")</p>
