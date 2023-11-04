@@ -6,13 +6,14 @@
 
 <h4>Add a new flavor</h4>
 
+<p>@Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger", @style = "font-weight: 600;" })</p>
+
 @using (Html.BeginForm())
 {
     @Html.LabelFor(model => model.Type)
     @Html.TextBoxFor(model => model.Type)
-
-    <input type="submit" value="Add new flavor" class="btn btn-primary" />
+    <span asp-validation-for="Type" class="text-danger"></span>
+    <input type="submit" value="Add a new treat" class="btn btn-primary" />
 }
 <p>@Html.ActionLink("Show all flavors", "Index")</p>
-
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<p>@Html.ActionLink("Back to Home", "Index", "Home")</p>

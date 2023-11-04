@@ -22,12 +22,6 @@ else
       <li>Flavor: @join.Flavor.Type</li>
       @using (Html.BeginForm("DeleteJoin", "Treats"))
       {
-        @if (ViewBag.ErrorMessage != null)
-        {
-          <div class="alert alert-danger">
-            @ViewBag.ErrorMessage
-          </div>
-        }
         @Html.Hidden("joinId", @join.FlavorTreatId)
         <input type="submit" value="Delete"/>
       }
@@ -35,7 +29,11 @@ else
   </ul>
 }
 
-<p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId })</p>
-<p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })</p>
-<p>@Html.ActionLink("Add flavor", "AddFlavor", new { id = Model.TreatId })</p>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>@Html.ActionLink("Back to list", "Index")</p>
+    <p>@Html.ActionLink("Edit Treat", "Edit", new { id = Model.TreatId })</p>
+    <p>@Html.ActionLink("Delete Treat", "Delete", new { id = Model.TreatId })</p>
+    <p>@Html.ActionLink("Add flavor", "AddFlavor", new { id = Model.TreatId })</p>
+}
+@Html.ActionLink("Back to Home", "Index", "Home")
