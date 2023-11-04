@@ -3,7 +3,9 @@
 }
 
 
-<h2>@Model.ErrorMessage</h2>
+<h2>@Model["error"].ErrorMessage</h2>
 
-@Html.ActionLink("Back to List", "Index")
+@Html.ActionLink("Back to treat", "Details", "Treats", new { id = Model["treatId"] })
+<hr>
+
 
